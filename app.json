@@ -22,6 +22,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "android": {
+      "package": "com.anonymous.currencyexchangeapp"
+    },
+    "ios": {
+      "bundleIdentifier": "com.anonymous.currencyexchangeapp"
     }
   }
 }
