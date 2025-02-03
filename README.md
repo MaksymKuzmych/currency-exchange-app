@@ -32,6 +32,9 @@ The Currency Exchange App is designed to:
 
    ```bash
    git clone https://github.com/MaksymKuzmych/currency-exchange-app.git
+   ```
+
+   ```bash
    cd currency-exchange-app
    ```
 
@@ -53,11 +56,11 @@ The Currency Exchange App is designed to:
 
 4. **Start the App:**
 
-- **Prebuild:**
+  - **Prebuild:**
 
-  ```bash
-  pnpm prebuild
-  ```
+    ```bash
+    pnpm prebuild
+    ```
 
   - **Development Mode:**
 
