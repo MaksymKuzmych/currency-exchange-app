@@ -1,11 +1,24 @@
-import { Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Index = () => {
+import { useFixerRates } from '@/hooks';
+import { Loader, ErrorDisplay, BottomBanner, Rates } from '@/components';
+
+const RatesScreen = () => {
+  const { data, error, isLoading, isFetching, refetch } = useFixerRates();
+
+  if (isLoading) return <Loader />;
+
   return (
-    <View>
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <>
+      <StatusBar style='dark' />
+      <SafeAreaView className='flex-1'>
+        {error && !data?.rates && <ErrorDisplay message={error.message} retry={refetch} />}
+        {data?.rates && <Rates rates={data.rates} isFetching={isFetching} refetch={refetch} />}
+        {error && data?.rates && <BottomBanner message='Refresh failed. Showing cached data.' />}
+      </SafeAreaView>
+    </>
   );
 };
 
-export default Index;
+export default RatesScreen;
