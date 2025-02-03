@@ -1,10 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { MMKV } from 'react-native-mmkv';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 
-const storage = new MMKV();
+import { storage } from '@/storage';
 
 const persister = createSyncStoragePersister({
   storage: {
