@@ -18,14 +18,24 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       gcTime: 1000 * 60 * 60 * 24,
-      staleTime: 1000 * 60 * 5,
     },
   },
 });
 
 export const QueryProvider = ({ children }: PropsWithChildren) => {
   return (
-    <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{
+        persister,
+        dehydrateOptions: {
+          shouldDehydrateQuery: ({ state: { data } }) => {
+            if (!data) return false;
+            return true;
+          },
+        },
+      }}
+    >
       {children}
     </PersistQueryClientProvider>
   );
