@@ -1,5 +1,5 @@
+import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useFixerRates } from '@/hooks';
 import { Loader, ErrorDisplay, BottomBanner, Rates } from '@/components';
@@ -12,11 +12,13 @@ const RatesScreen = () => {
   return (
     <>
       <StatusBar style='dark' />
-      <SafeAreaView className='flex-1'>
+      <View className='flex-1 bg-white'>
         {error && !data?.rates && <ErrorDisplay message={error.message} retry={refetch} />}
-        {data?.rates && <Rates rates={data.rates} isFetching={isFetching} refetch={refetch} />}
+        {data?.rates && (
+          <Rates base={data.base} rates={data.rates} isFetching={isFetching} refetch={refetch} />
+        )}
         {error && data?.rates && <BottomBanner message='Refresh failed. Showing cached data.' />}
-      </SafeAreaView>
+      </View>
     </>
   );
 };

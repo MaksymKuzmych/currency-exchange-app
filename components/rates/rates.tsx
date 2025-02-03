@@ -5,15 +5,16 @@ import { IRates } from '@/types';
 import { keyExtractor, renderItem } from './rates.utils';
 
 interface IRatesProps {
+  base: string;
   rates: IRates;
   isFetching: boolean;
   refetch: () => void;
 }
 
-export const Rates = ({ rates, isFetching, refetch }: IRatesProps) => {
+export const Rates = ({ base, rates, isFetching, refetch }: IRatesProps) => {
   return (
     <FlashList
-      data={Object.entries(rates).map(([currency, rate]) => ({ currency, rate }))}
+      data={Object.entries(rates).map(([currency, rate]) => ({ base, currency, rate }))}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       estimatedItemSize={100}
