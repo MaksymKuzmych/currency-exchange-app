@@ -80,7 +80,7 @@ The Currency Exchange App is designed to:
     pnpm ios
     ```
 
-  - **Start on localhost (to check offline mode with physical device):**
+  - **Start on localhost (to test offline mode on a physical device):**
 
     ```bash
     pnpm expo start --localhost
