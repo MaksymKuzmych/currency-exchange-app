@@ -7,8 +7,8 @@ interface IPrimaryButtonProps {
 
 export const PrimaryButton = ({ title, onPress }: IPrimaryButtonProps) => {
   return (
-    <TouchableOpacity onPress={onPress} className='rounded-xl bg-black px-12 py-4'>
-      <Text className='text-lg text-white'>{title}</Text>
+    <TouchableOpacity onPress={onPress} className='m-2 rounded-xl bg-black px-12 py-4'>
+      <Text className='text-center text-xl text-white'>{title}</Text>
     </TouchableOpacity>
   );
 };
