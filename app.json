@@ -28,6 +28,14 @@
     },
     "ios": {
       "bundleIdentifier": "com.anonymous.currencyexchangeapp"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6721e276-a591-4f17-bf43-a1b12aaa15fe"
+      }
     }
   }
 }

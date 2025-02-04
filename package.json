@@ -12,7 +12,8 @@
     "test": "jest --watchAll",
     "type-check": "tsc --noEmit",
     "lint": "expo lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "eas-preview:android": "eas build --profile preview --platform android"
   },
   "jest": {
     "preset": "jest-expo"

@@ -7,6 +7,7 @@ A simple mobile application built with Expo and React Native that displays curre
 - [Overview](#overview)
 - [Architecture and Design Choices](#architecture-and-design-choices)
 - [Installation and Running the App](#installation-and-running-the-app)
+- [Building an APK](#building-an-apk)
 - [Project Structure](#project-structure)
 - [Offline Mode Implementation](#offline-mode-implementation)
 - [Additional Libraries and Tools](#additional-libraries-and-tools)
@@ -24,67 +25,114 @@ The Currency Exchange App is designed to:
 - **Expo & React Native:** Chosen for rapid development and cross-platform compatibility.
 - **@tanstack/react-query:** Manages data fetching, caching, and state. It helps with offline support using persistent caching.
 - **Modular Structure:** Separates the code into logical modules (e.g., components, services) for maintainability.
-- **Secure API Key Management:** Uses environment variables to keep API keys safe.
+- **Secure API Key Management:** Uses environment variables to keep API keys safe. (I used the EXPO_PUBLIC prefix for environment variables to ensure the app runs not only in EAS builds but also in Expo Go and expo-dev-client, as these environments don’t have access to EAS secrets at runtime. I developed the app using expo-dev-client because EAS builds for iOS require a $99 Apple Developer subscription, and I needed to test on iOS)
 
 ## Installation and Running the App
 
 1. **Clone the Repository:**
 
-   ```bash
-   git clone https://github.com/MaksymKuzmych/currency-exchange-app.git
-   ```
+```bash
+git clone https://github.com/MaksymKuzmych/currency-exchange-app.git
+```
 
-   ```bash
-   cd currency-exchange-app
-   ```
+```bash
+cd currency-exchange-app
+```
 
 2. **Install Dependencies:**
 
-   Make sure you have [Node.js](https://nodejs.org/) and [Expo CLI](https://docs.expo.dev/get-started/installation/) installed.
+Make sure you have [Node.js](https://nodejs.org/) and [Expo CLI](https://docs.expo.dev/get-started/installation/) installed.
 
-   ```bash
-   pnpm install
-   ```
+```bash
+pnpm install
+```
 
 3. **Configure Environment Variables:**
 
-   Create a `.env` file in the root directory and add your API keys:
+Create a `.env` file in the root directory and add your API keys:
 
-   ```env
-   EXPO_PUBLIC_FIXER_API_KEY=your_api_key_here
-   ```
+```env
+EXPO_PUBLIC_FIXER_API_KEY=your_api_key_here
+```
 
 4. **Start the App:**
 
-  - **Prebuild:**
+- **Prebuild:**
 
-    ```bash
-    pnpm prebuild
-    ```
+```bash
+pnpm prebuild
+```
 
-  - **Development Mode:**
+- **Development Mode:**
 
-    ```bash
-    pnpm start
-    ```
+```bash
+pnpm start
+```
 
-  - **Run on Android:**
+- **Run on Android:**
 
-    ```bash
-    pnpm android
-    ```
+```bash
+pnpm android
+```
 
-  - **Run on iOS (macOS only):**
+- **Run on iOS (macOS only):**
 
-    ```bash
-    pnpm ios
-    ```
+```bash
+pnpm ios
+```
 
-  - **Start on localhost (to test offline mode on a physical device):**
+- **Start on localhost (to test offline mode on a physical device):**
 
-    ```bash
-    pnpm expo start --localhost
-    ```
+```bash
+pnpm expo start --localhost
+```
+
+## Building an APK
+
+To build an APK file for Android using Expo Application Services (EAS), follow these steps:
+
+1.  **Ensure you have EAS CLI installed:**
+
+```bash
+npm install -g eas-cli
+```
+
+2.  **Authenticate with Expo:**
+
+```bash
+eas login
+```
+
+3.  **Configure the project:**
+
+```bash
+eas build:configure
+```
+
+4.  **Set up environment variables in EAS:**
+
+Make sure to add environment variables to EAS before building to ensure they are available in the build process.
+
+5.  **Build an APK:**
+
+```bash
+pnpm eas-preview:android
+```
+
+- The APK will be available for internal testing.
+- The build process will generate a link to download the APK.
+
+6.  **Download and install the APK on your device.**
+
+You can find the generated APK in your Expo dashboard or via the provided URL after the build completes.
+
+If you need a production-ready build, use:
+
+```bash
+eas build --profile production --platform android
+```
+
+This will generate an `.aab` file for Play Store submission.
 
 ## Project Structure
 
